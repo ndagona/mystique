@@ -1,0 +1,36 @@
+.loginBod {
+    width: 800px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+
+
+.pinSectionMain {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    border-radius: 20px;
+    gap: 10px;
+}
+
+.pinSectionMain > article {
+    height: 50px;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    border-width: 10px;
+    cursor: grab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
