@@ -1,5 +1,5 @@
 import "./Login.css";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, use } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
 import { BlinkBlur } from "react-loading-indicators";
@@ -15,13 +15,22 @@ const Login = () => {
   const boxShadow = eminence["shadows"]["levels"]["xs"];
   const fontSize = "1.7rem";
   const [textString, setTextString] = useState("");
-  const theString = "Access Code";
+  const [theString, setTheString] = useState("Access Code");
   const ALLOWED_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
 
   const [pincode, setPincode] = useState({ 0: "", 1: "", 2: "", 3: "" });
   const [indice, setIndice] = useState(0);
   const [currentVal, setCurrentValue] = useState();
   const [login, setLogin] = useState(false);
+  const [madamerror, setMadamError] = useState(false);
+
+  const rejectedActions = {
+    borderColor: "red",
+    boxShadow: `0 0 10px red`,
+    animation: "shake 0.5s",
+  };
+
+  const errorActions = madamerror ? rejectedActions : {};
 
   const [loading, setLoading] = useState(false);
 
@@ -36,21 +45,16 @@ const Login = () => {
     if (userPin !== PIN) {
       resetLogin();
       setLogin(false);
+      if (userPin.toString().length === 4) {
+        setMadamError(true);
+      }
       return;
     }
-    const seq = [
-      `**************** checking access code ********`,
-      `**************** valid code ******************`,
-      `**************** password accepted ***********`,
-      `**************** loading desktop *************`,
-      `**************** redirecting *****************`,
-    ];
+    const seq = new Array(2).fill(0);
     let currentIndex = 0;
-
+    setTheString("");
     const intervalId = setInterval(() => {
-      setTextString(seq[currentIndex]);
       currentIndex++;
-
       if (currentIndex >= seq.length) {
         clearInterval(intervalId);
         navigate("/");
@@ -129,16 +133,44 @@ const Login = () => {
             borderColor: info,
           }}
         >
-          <article className="pinSection" style={{ ...codeStyle }}>
+          <article
+            className="pinSection"
+            style={{
+              ...codeStyle,
+              ...errorActions,
+              transform: indice === 0 ? "scale(1.3)" : "scale(1)",
+            }}
+          >
             {pincode["0"]}
           </article>
-          <article className="pinSection" style={{ ...codeStyle }}>
+          <article
+            className="pinSection"
+            style={{
+              ...codeStyle,
+              ...errorActions,
+              transform: indice === 1 ? "scale(1.3)" : "scale(1)",
+            }}
+          >
             {pincode["1"]}
           </article>
-          <article className="pinSection" style={{ ...codeStyle }}>
+          <article
+            className="pinSection"
+            style={{
+              ...codeStyle,
+              ...errorActions,
+              transform: indice === 2 ? "scale(1.3)" : "scale(1)",
+            }}
+          >
             {pincode["2"]}
           </article>
-          <article className="pinSection" style={{ ...codeStyle }}>
+          <article
+            className="pinSection"
+            style={{
+              ...codeStyle,
+              ...errorActions,
+              transform: indice === 3 ? "scale(1.3)" : "scale(1)",
+            }}
+          >
             {pincode["3"]}
           </article>
         </section>

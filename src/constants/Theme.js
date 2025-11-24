@@ -3,6 +3,7 @@ const useThemes = () => {
     themes: {
       light: {
         colors: {
+          filter: "brightness(0) invert(0)",
           primary: {
             50: "#f0f9ff",
             100: "#e0f2fe",
@@ -108,6 +109,8 @@ const useThemes = () => {
       },
       dark: {
         colors: {
+          filter: "brightness(0) invert(1)",
+
           primary: {
             50: "#fdf2f8",
             100: "#fce7f3",

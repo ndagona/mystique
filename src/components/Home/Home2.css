@@ -1,0 +1,32 @@
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .homeContainer .nav {
+   margin-top: 200px;
+   display: none;
+  }
+
+  .toggleMenu {
+    display: flex !important;
+    width: 40px;
+    aspect-ratio: 1/1;
+    position:absolute;
+    top: 20px;
+    left: 0;
+  }
+
+
+}
+@media screen and (max-width: 479px) {
+  .homeContainer .nav {
+   margin-top: 150px;
+   display: none;
+  }
+
+  .toggleMenu {
+    display: flex !important;
+    width: 35px;
+    aspect-ratio: 1/1;
+    position:absolute;
+    top: 15px;
+    left: 0;
+  } 
+}

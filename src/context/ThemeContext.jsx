@@ -5,10 +5,28 @@ import useTextStyles from "../constants/Text";
 export const ThemeContext = createContext();
 
 const ThemeContextProvider = ({ children }) => {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setNewTheme] = useState("dark");
   const [themes, _] = useState(useThemes ?? {});
   const [eminence, __] = useState(useShadowStyles ?? {});
   const [useText, ___] = useState(useTextStyles);
+
+  const setThemeToLocalStorage = (theme) => {
+    localStorage.setItem("theme", theme);
+  };
+
+  const setTheme = (newTheme) => {
+    setThemeToLocalStorage(newTheme);
+    setNewTheme(newTheme);
+  };
+
+  useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme) {
+      setTheme(localTheme);
+    } else {
+      setThemeToLocalStorage(theme);
+    }
+  }, []);
 
   return (
     <ThemeContext.Provider
