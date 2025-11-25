@@ -1,4 +1,4 @@
-@media screen and (min-width: 480px) and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .homeContainer .nav {
    margin-top: 200px;
    display: none;
